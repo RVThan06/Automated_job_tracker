@@ -7,15 +7,17 @@
 
 ### 2. Multiple job enteries are scraped 
 
-![image](https://github.com/RVThan06/Automated_job_tracker/assets/63298542/11f28fa0-0859-499c-870d-22c4be674c9c)
+![image](https://github.com/RVThan06/Automated_job_tracker/assets/63298542/c01fe8f0-1ab2-45d4-b612-17e6da96ee12)
 
 ### 3. Scraped job information is stored in sqite database 
 
-![image](https://github.com/RVThan06/Automated_job_tracker/assets/63298542/db1a4b3d-9663-488e-8871-afeba1be7288)
+![image](https://github.com/RVThan06/Automated_job_tracker/assets/63298542/3ca5fe08-c7e0-4ada-991c-78dfbce0ebc3)
 
 ### 4. Email alert is sent for new job enteries 
 
-![Uploading image.png…]()
+![image](https://github.com/RVThan06/Automated_job_tracker/assets/63298542/90c1a848-e8e3-4d9a-885e-30b77a2c1718)
+![image](https://github.com/RVThan06/Automated_job_tracker/assets/63298542/0645e872-f9f7-4e44-85a6-8f6bbe23207a)
+
 
 
 
