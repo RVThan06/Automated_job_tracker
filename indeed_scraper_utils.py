@@ -76,6 +76,11 @@ def sort_job_by_date(driver: WebDriver) -> None:
 def close_pop_up(driver: WebDriver, region:str) -> None:
     """To close pop up notification."""
 
+    # privacy policy pop-up
+    privacy = driver.find_element(By.XPATH, '//*[@id="CookiePrivacyNotice"]/div/button')
+    privacy.click()
+    time.sleep(2)
+
     if region == "SG":
         # singaporean indeed has cookies to be rejected
         cookies = driver.find_element(By.XPATH, '//*[@id="onetrust-reject-all-handler"]')
@@ -98,7 +103,7 @@ def close_pop_up(driver: WebDriver, region:str) -> None:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
         return
 
-    # general pop up in both MY and Sg indeed
+    # to close normal popup in MY
     normal_pop_up = driver.find_element(By.CSS_SELECTOR, "button.css-yi9ndv")
     normal_pop_up.click()
     time.sleep(3)
