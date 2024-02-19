@@ -73,35 +73,43 @@ def sort_job_by_date(driver: WebDriver) -> None:
     date.click()
 
 
-def close_pop_up(driver: WebDriver, region:str) -> None:
+def close_pop_up_sg(driver: WebDriver) -> None:
     """To close pop up notification."""
+
+    # singaporean indeed has cookies to be rejected
+    cookies = driver.find_element(By.XPATH, '//*[@id="onetrust-reject-all-handler"]')
+    cookies.click()
+    time.sleep(3)
+
+    # singaporean indeed has email pop up
+    email_pop_up = driver.find_element(By.XPATH, '//*[@id="google-Only-Modal"]/div/div[1]/button')
+    email_pop_up.click()
+    time.sleep(3)
+
+    # to close normal pop-up
+    try:
+        normal_pop_up = driver.find_element(By.CSS_SELECTOR, "button.css-yi9ndv")
+        normal_pop_up.click()
+    except:
+        logging.info("No normal pop up in indeed singapore")
 
     # privacy policy pop-up
     privacy = driver.find_element(By.XPATH, '//*[@id="CookiePrivacyNotice"]/div/button')
     privacy.click()
     time.sleep(2)
 
-    if region == "SG":
-        # singaporean indeed has cookies to be rejected
-        cookies = driver.find_element(By.XPATH, '//*[@id="onetrust-reject-all-handler"]')
-        cookies.click()
-        time.sleep(3)
+    time.sleep(3)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    return
 
-        # singaporean indeed has email pop up
-        email_pop_up = driver.find_element(By.XPATH, '//*[@id="google-Only-Modal"]/div/div[1]/button')
-        email_pop_up.click()
-        time.sleep(3)
 
-        # to close normal pop-up
-        try:
-            normal_pop_up = driver.find_element(By.CSS_SELECTOR, "button.css-yi9ndv")
-            normal_pop_up.click()
-        except:
-            logging.info("No normal pop up in indeed singapore")
+def close_pop_up_my(driver: WebDriver) -> None:
+    """To close pop up notification."""
 
-        time.sleep(3)
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-        return
+    # privacy policy pop-up
+    privacy = driver.find_element(By.XPATH, '//*[@id="CookiePrivacyNotice"]/div/button')
+    privacy.click()
+    time.sleep(2)
 
     # to close normal popup in MY
     normal_pop_up = driver.find_element(By.CSS_SELECTOR, "button.css-yi9ndv")
@@ -308,7 +316,10 @@ def search_all_jobs(job: str, location: str, database_table: str, region: str) -
 
     # 3. to close pop up
     time.sleep(4)
-    close_pop_up(driver, region)
+    if region=="SG":
+        close_pop_up_sg(driver)
+    else:
+        close_pop_up_my(driver)
 
     # 4. Scrap job search data
     time.sleep(4)
